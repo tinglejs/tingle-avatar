@@ -121,7 +121,6 @@ Avatar.propTypes = {
     name: React.PropTypes.string,
     defaultColor: React.PropTypes.string,
     defaultAvatar: React.PropTypes.string,
-    customClass: React.PropTypes.string,
     margin: React.PropTypes.string,
     color: React.PropTypes.string,
     colors: React.PropTypes.array,
