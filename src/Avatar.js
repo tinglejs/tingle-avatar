@@ -103,7 +103,6 @@ Avatar.defaultProps = {
     isLong: false,
     size: 40,
     fontSize: 12,
-    margin: '0 10px 0 0',
     color: '#fff'
 };
 
