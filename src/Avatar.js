@@ -6,7 +6,7 @@
  * All rights reserved.
  */
 const classnames = require('classnames');
-const {unitize} = require('tingle-style')
+const {unitize} = require('tingle-style');
 const Context = require('tingle-context');
 const avatarColors = ["#68ba99", "#66b09c", "#55a4ae", "#5c9bbb", "#529e92", "#55b595"];
 const defaultAvatar = 'https://img.alicdn.com/tps/TB1.IgIKpXXXXbgXpXXXXXXXXXX-116-116.png';
@@ -21,14 +21,13 @@ class Avatar extends React.Component {
             "height": size,
             "lineHeight": size,
             "fontSize": unitize(this.props.fontSize),
-            "color": this.props.color,
-            "margin": this.props.margin,
+            "color": this.props.color
         };
     }
 
     shouldComponentUpdate(nextProps, nextState) {
-        for(let key in this.props){
-            if(this.props[key] !== nextProps[key]){
+        for (let key in this.props) {
+            if (this.props[key] !== nextProps[key]) {
                 return true;
             }
         }
@@ -37,14 +36,16 @@ class Avatar extends React.Component {
 
     render() {
         let t = this;
-        if(t.props.name === ''){
+        if (t.props.name === '') {
             return (
-                <img src={t.props.defaultAvatar} style={t.style}/>
+                <img ref='root' className={classnames('tAvatar', {
+                    [t.props.className]: !!t.props.className
+                })} src={t.props.defaultAvatar} style={t.style}/>
             );
         }
-        if(t.props.defaultColor){
+        if (t.props.defaultColor) {
             t.style.backgroundColor = t.props.defaultColor;
-        }else{
+        } else {
             let hashCode = t.props.hashCode(t.props.name, t.props.isLong);
             t.style.backgroundColor = t.props.colors[Math.abs(hashCode) % t.props.colors.length];
         }
@@ -58,20 +59,21 @@ class Avatar extends React.Component {
     }
 }
 
-Avatar.hashCode = function(strKey, isLong){
-    function intValue(num){
+Avatar.hashCode = (strKey, isLong) => {
+    let intValue = (num) => {
         let MAX_VALUE = 0x7fffffff;
         let MIN_VALUE = -0x80000000;
-        if(num > MAX_VALUE || num < MIN_VALUE){
+        if (num > MAX_VALUE || num < MIN_VALUE) {
             return num &= 0xFFFFFFFF;
         }
         return num;
-    }
+    };
+
     let hash = 0;
-    if(typeof strKey === 'string'){
-        for(let i = 0, l = strKey.length; i < l; i++){
+    if (typeof strKey === 'string') {
+        for (let i = 0, l = strKey.length; i < l; i++) {
             hash = hash * 31 + strKey.charCodeAt(i);
-            if(!isLong){
+            if (!isLong) {
                 hash = intValue(hash);
             }
         }
@@ -79,16 +81,16 @@ Avatar.hashCode = function(strKey, isLong){
     return hash;
 };
 
-Avatar.formatName = function(name){
+Avatar.formatName = (name) => {
     let firstChar = name.slice(0, 1);
-    if(/^[A-Za-z]+$/.test(firstChar)){
+    if (/^[A-Za-z]+$/.test(firstChar)) {
         return firstChar.toUpperCase();
     }
-    if(name.length === 3){
-        return name.slice(1,3);
+    if (name.length === 3) {
+        return name.slice(1, 3);
     }
-    if(name.length > 3){
-        return name.slice(0,2);
+    if (name.length > 3) {
+        return name.slice(0, 2);
     }
     return name;
 };

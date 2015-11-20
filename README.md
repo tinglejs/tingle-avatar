@@ -54,7 +54,6 @@ module.exports = Demo;
 |hashCode| function | optional| java 默认的 hashCode 算法 |hashCode 算法|
 |isLong| boolean | optional|false|hashCode 的类型|
 |className| string |optional|-|自定义头像 class|
-|margin| string | optional | 0 10px 0 0| margin|
 |defaultColor| string | optional |-| 固定背景颜色，若传入此参数，则背景颜色为当前参数颜色|
 
 
