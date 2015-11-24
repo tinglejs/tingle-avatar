@@ -41,20 +41,108 @@ class Demo extends React.Component {
 module.exports = Demo;
 ```
 
-## 可用配置
+## Props
 
-| 配置项 | 类型 | 必填 | 默认值 | 功能/备注 |
-|---|---|----|---|----|
-|name| string | optional|-|名字|
-|size| number or string | optional| 40px |头像大小|
-|fontSize| number or string | optional| 12px |字体|
-|colors| arrray | optional| ["#68ba99", "#66b09c", "#55a4ae", "#5c9bbb", "#529e92", "#55b595"] | 用来生成背景的颜色集合，可通过 Context.setGloabl({avatarColors: ['red', 'blue']}) 统一进行设置， 也可以通过 props 传入|
-|color| string | optional| '#fff' |文字颜色|
-|defaultAvatar| string | optional| https://img.alicdn.com/tps/TB1.IgIKpXXXXbgXpXXXXXXXXXX-116-116.png|没有名字是显示的默认头像地址|
-|hashCode| function | optional| java 默认的 hashCode 算法 |hashCode 算法|
-|isLong| boolean | optional|false|hashCode 的类型|
-|className| string |optional|-|自定义头像 class|
-|defaultColor| string | optional |-| 固定背景颜色，若传入此参数，则背景颜色为当前参数颜色|
+#### name
+
+描述：名字
+
+类型：String
+
+默认：''
+
+必填：否
+
+#### size
+
+描述：头像大小
+
+类型：String / Number
+
+默认：40px
+
+必填：否
+
+#### fontSize
+
+描述：字体大小
+
+类型：String / Number
+
+默认：12px
+
+必填：否
+
+#### colors
+
+描述：用来生成背景的颜色集合，可通过 Context.setGloabl({avatarColors: ['red', 'blue']}) 统一进行设置， 也可以通过 props 传入
+
+类型：Array
+
+默认：["#68ba99", "#66b09c", "#55a4ae", "#5c9bbb", "#529e92", "#55b595"] 
+
+必填：否
+
+#### color
+
+描述：名字颜色
+
+类型：String
+
+默认：#fff
+
+必填：否
+
+#### className
+
+描述：自定义 class
+
+类型：String
+
+默认：''
+
+必填：否
+
+#### hashCode
+
+描述：hashCode 算法
+
+类型：Function
+
+默认：java 默认的 hashCode 算法
+
+必填：否
+
+#### isLong
+
+描述：hashCode 的类型
+
+类型：Boolean
+
+默认：false
+
+必填：否
+
+#### defaultColor
+
+描述：固定背景颜色，若传入此参数，则背景颜色为当前参数颜色
+
+类型：String
+
+默认：''
+
+必填：否
+
+#### defaultAvatar
+
+描述：没有名字是显示的默认头像地址
+
+类型：String
+
+默认：https://img.alicdn.com/tps/TB1.IgIKpXXXXbgXpXXXXXXXXXX-116-116.png
+
+必填：否
+
 
 
 ## API接口
