@@ -7,7 +7,6 @@
  */
 
 const classnames = require('classnames');
-const Context = require('tingle-context');
 const Avatar = require('../src');
 class Demo extends React.Component {
 

@@ -9,19 +9,20 @@ const classnames = require('classnames');
 const {unitize} = require('tingle-style');
 const Context = require('tingle-context');
 const avatarColors = ["#68ba99", "#66b09c", "#55a4ae", "#5c9bbb", "#529e92", "#55b595"];
-const defaultAvatar = 'https://img.alicdn.com/tps/TB1.IgIKpXXXXbgXpXXXXXXXXXX-116-116.png';
+const defaultSrc = 'https://img.alicdn.com/tps/TB1.IgIKpXXXXbgXpXXXXXXXXXX-116-116.png';
+Context.setGlobal({avatar: {}});
+let global = Context.getGlobal('avatar');
 
 class Avatar extends React.Component {
 
-    constructor(props) {
+    constructor(props) {console.log(1);
         super(props);
         let size = unitize(this.props.size);
         this.style = {
             "width": size,
             "height": size,
             "lineHeight": size,
-            "fontSize": unitize(this.props.fontSize),
-            "color": this.props.color
+            "fontSize": unitize(this.props.fontSize)
         };
     }
 
@@ -36,11 +37,11 @@ class Avatar extends React.Component {
 
     render() {
         let t = this;
-        if (t.props.name === '') {
+        if (!t.props.name || t.props.src) {
             return (
                 <img ref='root' className={classnames('tAvatar', {
                     [t.props.className]: !!t.props.className
-                })} src={t.props.defaultAvatar} style={t.style}/>
+                })} src={t.props.src || t.props.defaultSrc} style={t.style}/>
             );
         }
         if (t.props.defaultColor) {
@@ -98,14 +99,14 @@ Avatar.formatName = (name) => {
 Avatar.defaultProps = {
     className: '',
     name: '',
+    src: '',
     defaultColor: '',
-    colors: Context.getGlobal('avatarColors') || avatarColors,
-    defaultAvatar: defaultAvatar,
-    hashCode: Avatar.hashCode,
+    colors: global.colors || avatarColors,
+    defaultSrc: global.defaultSrc || defaultSrc,
+    hashCode: global.hashCode || Avatar.hashCode,
     isLong: false,
     size: 40,
-    fontSize: 12,
-    color: '#fff'
+    fontSize: 12
 };
 
 // http://facebook.github.io/react/docs/reusable-components.html
@@ -121,8 +122,8 @@ Avatar.propTypes = {
     ]),
     name: React.PropTypes.string,
     defaultColor: React.PropTypes.string,
-    defaultAvatar: React.PropTypes.string,
-    color: React.PropTypes.string,
+    defaultSrc: React.PropTypes.string,
+    src: React.PropTypes.string,
     colors: React.PropTypes.array,
     isLong: React.PropTypes.bool,
     hashCode: React.PropTypes.func

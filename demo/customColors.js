@@ -7,11 +7,14 @@
  */
 
 const classnames = require('classnames');
-const Context = require('tingle-context');
 const Avatar = require('../src');
 const avatarColors = ['green', 'grey', 'orange', 'blue', 'red'];
-// Context.setGolbal({avatarColors: avatarColors});
-// avatarColors 可以通过 Context.setGolbal 来一次设置，这里由于avatar.js 已经加载了，所以使用 props 来设置。
+
+// avatarColors 可以通过 Context 来全局设置，这里由于avatar.js 在AvatarDemo.js 中已经加载了，所以使用 props 来设置。
+//const Context = require('tingle-context');
+//let global = Context.getGlobal('avatar');
+//global.colors = avatarColors;
+
 class Demo extends React.Component {
 
     constructor(props) {

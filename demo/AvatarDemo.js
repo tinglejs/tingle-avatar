@@ -42,7 +42,7 @@ class Demo extends React.Component {
                     <Avatar name="马天明"/>
                     <Avatar name="欧阳夏丹"/>
                     <Avatar />
-                    <Avatar defaultAvatar="https://img.alicdn.com/tps/TB1amOaKpXXXXbsXVXXXXXXXXXX-144-144.png"/>
+                    <Avatar src="https://img.alicdn.com/tps/TB1amOaKpXXXXbsXVXXXXXXXXXX-144-144.png"/>
                 </div>
             </div>
         );
