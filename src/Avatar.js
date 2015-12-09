@@ -15,7 +15,7 @@ let global = Context.getGlobal('avatar');
 
 class Avatar extends React.Component {
 
-    constructor(props) {console.log(1);
+    constructor(props) {
         super(props);
         let size = unitize(this.props.size);
         this.style = {
