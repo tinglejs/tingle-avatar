@@ -1,8 +1,8 @@
 # tingle-avatar [![npm version](https://badge.fury.io/js/tingle-avatar.svg)](http://badge.fury.io/js/tingle-avatar)
 
 ## TL;DR
-  根据名字随机生成一个带背景颜色的头像，可给人员或公司默认 logo 等场景使用。
-  生成规则如下：
+  用于头像显示, 如果没有头像则根据名字随机生成一个带背景颜色的头像，如果没有名字则显示一个默认图片。可给人员或公司默认 logo 等场景使用。
+  头像生成规则如下：
   1. 定义一组颜色集合
   2. 通过名字来计算 hashCode ，hashCode 算法采用 java 中的 hashCode 实现方式， __如果和客户端同时开发项目，请注意和 ios/android 同学沟通保持一致的 hash算法__（可以通过 Avatar.hashCode('xxx'); Avatar.hashCode('xxx', true); 来测试 hash 值）。计算结果默认为 int 型（可能会为负数），也可通过传入 isLong: true 得到 long 型（过长会用科学计数法表示）。
   3. 将 hashCode 取绝对值，对颜色集合的总数进行取模，得到颜色的索引，即得到了背景颜色
@@ -18,6 +18,10 @@
 ## Simple Usage
 ```javascript
 const Avatar = require('../src');
+const Context = require('tingle-context');
+let global = Context.getGlobal('avatar');
+global.colors = ['green', 'grey', 'orange', 'blue', 'red'];
+global.defaultSrc = 'https://img.alicdn.com/tps/TB1.IgIKpXXXXbgXpXXXXXXXXXX-116-116.png';
 class Demo extends React.Component {
 
     constructor(props) {
@@ -27,11 +31,11 @@ class Demo extends React.Component {
     render() {
         return (
             <div className="avatar-demo">
-                <Avatar name="tingle"/>
                 <Avatar name="天晟"/>
                 <Avatar name="马天明"/>
                 <Avatar name="欧阳夏丹"/>
-                <Avatar defaultAvatar="https://img.alicdn.com/tps/TB1amOaKpXXXXbsXVXXXXXXXXXX-144-144.png"/>
+                <Avatar src="" name="tingle"/>
+                <Avatar src="https://img.alicdn.com/tps/TB1amOaKpXXXXbsXVXXXXXXXXXX-144-144.png"/>
                 <Avatar />
             </div>
         );
@@ -42,6 +46,16 @@ module.exports = Demo;
 ```
 
 ## Props
+
+#### src
+
+描述：头像图片链接
+
+类型：String
+
+默认：''
+
+必填：否
 
 #### name
 
@@ -73,9 +87,10 @@ module.exports = Demo;
 
 必填：否
 
+
 #### colors
 
-描述：用来生成背景的颜色集合，可通过 Context.setGloabl({avatarColors: ['red', 'blue']}) 统一进行设置， 也可以通过 props 传入
+描述：用来生成背景的颜色集合，可通过 Context 进行全局设置， 也可以通过 props 传入
 
 类型：Array
 
@@ -83,15 +98,6 @@ module.exports = Demo;
 
 必填：否
 
-#### color
-
-描述：名字颜色
-
-类型：String
-
-默认：#fff
-
-必填：否
 
 #### className
 
@@ -105,7 +111,7 @@ module.exports = Demo;
 
 #### hashCode
 
-描述：hashCode 算法
+描述：hashCode 算法， 可通过 Context 进行全局设置， 也可以通过 props 传入(不建议自定义)
 
 类型：Function
 
@@ -133,9 +139,9 @@ module.exports = Demo;
 
 必填：否
 
-#### defaultAvatar
+#### defaultSrc
 
-描述：没有名字是显示的默认头像地址
+描述：没有名字是显示的默认头像图片地址， 可通过 Context 进行全局设置， 也可以通过 props 传入
 
 类型：String
 
