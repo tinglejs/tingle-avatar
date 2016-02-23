@@ -15,6 +15,12 @@
 
 <img src="https://img.alicdn.com/tps/TB1TmsFKpXXXXcbXpXXXXXXXXXX-866-1480.png" width="375"/>
 
+## Install
+
+```js
+npm install tingle-avatar --save
+```
+
 ## Simple Usage
 ```javascript
 const Avatar = require('../src');
